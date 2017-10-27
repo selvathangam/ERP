@@ -38,7 +38,9 @@ class Admission_model extends CI_Model {
 	        'nationality' 	=> $this->input->post('nationality'),
 	        'religion' 		=> $this->input->post('religion'),
 	        'category' 		=> $this->input->post('category'),
-	        'caste' 		=> $this->input->post('caste')
+	        'caste' 		=> $this->input->post('caste'),
+	        'created_at'    	=> $this->currentDate(),
+	        'updated_at'    	=> $this->currentDate(),
 	    );
 
 	    $this->db->insert('personal_details', $data);
@@ -51,7 +53,7 @@ class Admission_model extends CI_Model {
 	{  
 	  
 	    $data['temparory'] = array(
-	    	'personal_id'		=> $this->session->userdata('personal_id'),
+	    	'std_id'			=> $this->session->userdata('std_id'),
 	        'address_type' 		=> 'temparory',	        
 	        'address_line1' 	=> $this->input->post('tmp_address_line1'),
 	        'address_line2' 	=> $this->input->post('tmp_address_line2'),
@@ -60,11 +62,13 @@ class Admission_model extends CI_Model {
 	        'zipcode' 			=> $this->input->post('tmp_zipcode'),
 	        'mobile_no' 		=> $this->input->post('tmp_mobile_no'),	        
 	        'mobile_no1' 		=> $this->input->post('tmp_mobile_no1'),
-	        'email' 			=> $this->input->post('tmp_email'),	        
+	        'email' 			=> $this->input->post('tmp_email'),	
+	        'created_at'    	=> $this->currentDate(),
+	        'updated_at'    	=> $this->currentDate(),        
 	    );
 
 	    $data['permanent'] = array(
-	    	'personal_id'		=> $this->session->userdata('personal_id'),
+	    	'std_id'			=> $this->session->userdata('std_id'),
 	        'address_type' 		=> 'permanent',
 	        'address_line1' 	=> $this->input->post('pmt_address_line1'),
 	        'address_line2' 	=> $this->input->post('pmt_address_line2'),
@@ -74,6 +78,8 @@ class Admission_model extends CI_Model {
 	        'mobile_no' 		=> $this->input->post('pmt_mobile_no'),	        
 	        'mobile_no1' 		=> $this->input->post('pmt_mobile_no1'),
 	        'email' 			=> $this->input->post('pmt_email'),	        
+	        'created_at'    	=> $this->currentDate(),
+	        'updated_at'    	=> $this->currentDate(),
 	    );
 	    foreach($data as $address){
 	    	
@@ -85,24 +91,26 @@ class Admission_model extends CI_Model {
 	public function setOtherDetails()
 	{  	
 	    $data = array(	        
-	        'personal_id'				=> $this->session->userdata('personal_id'),
+	        'std_id'					=> $this->session->userdata('std_id'),
 	        'certificate_enclosed' 		=> $this->input->post('certificate'),
 	        'transfort' 				=> $this->input->post('transfort'),
 	        'hostel' 					=> $this->input->post('hostel'),
-	        'physically_challenged' 	=> $this->input->post('physically_challenged'),	        
+	        'physically_challenged' 	=> $this->input->post('physically_challenged'),        
 	        'educational_gap' 			=> $this->input->post('educational_gap'),	        
+	        'created_at'    			=> $this->currentDate(),
+	        'updated_at'    			=> $this->currentDate(),
 	    );
 
 	    $this->db->insert('std_other_details', $data);
 	    $insert_id = $this->db->insert_id();
-		$this->session->unset_userdata('personal_id');   	
+		$this->session->unset_userdata('std_id');   	
 		return  $insert_id;
 
 	}
 	public function setGuardianDetails()
 	{  	
 	    $data = array(	        
-	        'personal_id'			=> $this->session->userdata('personal_id'),
+	        'std_id'				=> $this->session->userdata('std_id'),
 	        'guardian_name' 		=> $this->input->post('guardian_name'),
 	        'qualification' 		=> $this->input->post('qualification'),
 	        'occupation' 			=> $this->input->post('occupation'),
@@ -110,7 +118,9 @@ class Admission_model extends CI_Model {
 	        'emg_contact_person' 	=> $this->input->post('contact_person'),	        
 	        'emg_contact_no' 		=> $this->input->post('contact_no'),	        
 	        'blood_group' 			=> $this->input->post('blood_group'),	        
-	        'aadhar_no' 			=> $this->input->post('aadhar_no'),	        
+	        'aadhar_no' 			=> $this->input->post('aadhar_no'),	
+	        'created_at'    		=> $this->currentDate(),
+	        'updated_at'    		=> $this->currentDate(),        
 	    );
 
 	    $this->db->insert('std_guardian_details', $data);
@@ -121,13 +131,15 @@ class Admission_model extends CI_Model {
 	public function setEducationDetails()
 	{  	
 	    $data = array(	        
-	        'personal_id'			=> $this->session->userdata('personal_id'),
+	        'std_id'				=> $this->session->userdata('std_id'),
 	        'insititute_name' 		=> $this->input->post('insititute_name'),
 	        'board_university' 		=> $this->input->post('board_university'),
 	        'passoutyear' 			=> $this->input->post('passoutyear'),
 	        'max_mark' 				=> $this->input->post('max_mark'),	        
-	        'mark_scored' 	=> $this->input->post('mark_scored'),	        
-	        'Remarks' 		=> $this->input->post('Remarks'),	        	              
+	        'mark_scored' 			=> $this->input->post('mark_scored'),	        
+	        'Remarks' 				=> $this->input->post('Remarks'),	
+	        'created_at'    		=> $this->currentDate(),
+	        'updated_at'    		=> $this->currentDate(),	              
 	    );
 
 	    $this->db->insert('std_education_details', $data);

@@ -67,7 +67,7 @@ class Admission extends CI_Controller
 	    {	
 	    	try{
 	    		if($insertID =$this->admission_model->setPersonnalDetails()){
-	    			$this->session->set_userdata('personal_id', $insertID);
+	    			$this->session->set_userdata('std_id', $insertID);
 		    		echo json_encode(array("status"=>"success","message"=>"Your detail save successfully"));	
 		    	}
 	    	}
@@ -183,7 +183,7 @@ class Admission extends CI_Controller
 	    $this->form_validation->set_rules('guardian_name', 'Guardian Name', 'required');
 	    $this->form_validation->set_rules('qualification', 'Qualification', 'required');
 	    $this->form_validation->set_rules('occupation', 'Occupation', 'required');
-	    $this->form_validation->set_rules('income', 'Income', 'required|regex_match[/^[0-9]{10}$/]');
+	    $this->form_validation->set_rules('income', 'Income', 'required|regex_match[/^[0-9]{4}$/]');
 	    $this->form_validation->set_rules('contact_person', 'Contact Person', 'required');
 	    $this->form_validation->set_rules('contact_no', 'Contact No', 'required|regex_match[/^[0-9]{10}$/]');
 	    $this->form_validation->set_rules('blood_group', 'Blood Group', 'required');
